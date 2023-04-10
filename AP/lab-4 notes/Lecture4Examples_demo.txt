@@ -1,0 +1,279 @@
+
+###########################################
+######### Example 1  ##########################
+
+from random import *
+
+file_name="numeric_data.txt"
+data=open(file_name, 'w')
+
+for x in range(500):
+    number=randint(1,1000)
+    print(number)
+    number_str=str(number)+'\n'
+    data.write(number_str)
+
+data.close()
+sum=0
+count=0
+data=open(file_name,'r')
+for values in data:
+    values=values.strip()
+    num_values=int(values)
+    print(num_values)
+    sum=sum+num_values
+    count=count+1
+
+print(f"Sum is {sum}")
+avg=float((sum*1.00/count))
+avg_str="%.2f"%(avg)
+print (f"Average of {count} numbers is {avg_str}")
+
+
+#######################################################
+#######################################################
+#######################################################
+
+######### Example 2 ###################################
+
+#######################################################
+
+### Example of text file
+import os
+
+
+def main():
+    file_name="students.txt"
+    file_data=open(file_name, 'a')
+    file_data.close()
+    options="""
+    1. Add student information
+    2. Display student information
+    3. Search student by student ID
+    4. End
+    
+    """
+    while True:
+        print(options)
+        choice=input("Enter your choice:\t\t")
+        if choice=='1':
+            name=input("Enter your name:\t\t")
+            studentID=input("Enter your student ID:\t\t")
+            student_data=name+':'+studentID
+            if os.path.exists(file_name):
+                if os.path.getsize(file_name)==0:
+                    print("Entering first student data in file... ..")
+                    file_data = open(file_name, 'a')
+                    file_data.write(student_data)
+                    file_data.close()
+                else:
+                    print("Entering next student data in file .. .. ..")
+                    student_data='\n'+ student_data
+                    file_data = open(file_name, 'a')
+                    file_data.write(student_data)
+                    file_data.close()
+        elif choice=='2':
+            if os.path.getsize(file_name)!=0:
+                print('-'*125)
+                print("%70s"%("Students' Record"))
+                print('-' * 125)
+                print("%60s%60s\n"%("Student Name", "Student ID"))
+                file_data=open(file_name,'r')
+                for each_record in file_data:
+                    each_record=each_record.strip()
+                    each_record_list=each_record.split(':')
+                    print("%60s%60s"%(each_record_list[0], each_record_list[1]))
+                file_data.close()
+            else:
+                print("No records to display in file .. ..")
+        elif choice=='3':
+            student_found=False
+            print("Searching student based on Student ID .. .. ")
+            if os.path.getsize(file_name)!=0:
+                student_search=input("Enter student ID - to search:\t\t\t")
+                file_data = open(file_name, 'r')
+                for each_student in file_data:
+                    each_student=each_student.strip()
+                    each_student_list=each_student.split(':')
+                    if each_student_list[1]==student_search:
+                        student_found=True
+                        print('-' * 125)
+                        print("%70s" % ("Students' Record"))
+                        print('-' * 125)
+                        print("%60s%60s\n" % ("Student Name", "Student ID"))
+                        print("%60s%60s" % (each_student_list[0], each_student_list[1]))
+
+                file_data.close()
+                if student_found==False:
+                    print(f"Student having student ID {student_search} is not enrolled yet .. .. ..")
+
+            else:
+                print("No records in the list ... .. so no search to be done .. .. ..")
+
+        elif choice=='4':
+            print("Application ending now .. .. .. ")
+            break
+
+        else:
+            print("Enter valid choice .... .... ....")
+
+
+
+
+main()
+
+########################################################
+########################################################
+
+#################  Example 3  ##########################
+
+
+import pickle
+import os
+student_data={"N01234":{"first_name":"Muhammad ", "last_name": "Khan", "ID":"N01234"},
+              "N02345": {"first_name":"Khan", "last_name": "Muhammad", "ID":"N02345"},
+              }
+
+vehicle_data=["F123:Ford", "C123:Chevy", "H123:Honda", "T123:Toyota"]
+
+print(type(student_data))
+print(type(vehicle_data))
+
+
+file_name="mydata_file.dat"
+if not os.path.exists(file_name):
+    print("Creating file now ... ")
+    data=open(file_name, "ab")
+    print("Saving data in file .. .. ..")
+    pickle.dump(student_data, data)
+    pickle.dump(vehicle_data, data)
+
+    data.close()
+
+if os.path.exists(file_name):
+    if os.path.getsize(file_name)!=0:
+        data=open(file_name, "rb")
+        while True:
+            try:
+                my_info_from_file=pickle.load(data)
+                print(my_info_from_file)
+                print(type(my_info_from_file))
+            except:
+                print("End of file reached ... .. ..")
+                data.close()
+                break
+    else:
+        print("No data in file .. .. ..")
+
+else:
+    print("file does not exist at its location ... ... ")
+
+
+
+
+#########################################################
+
+#########################################################
+########################################################
+
+########################################################
+
+############# 	Example 4 ############################
+
+######################################################
+
+import pickle
+import os
+
+
+def main():
+    file_name = "dealership.dat"
+    file_data = open(file_name, 'ab')
+    file_data.close()
+    options = """
+    1. Add vehicle information
+    2. Display vehicle information
+    3. Search vehicle by vehicle VIN
+    4. End
+
+    """
+    while True:
+        print(options)
+        choice = input("Enter your choice:\t\t")
+        if choice == '1':
+            vehicle_brand = input("Enter vehicle brand:\t\t")
+            vehicle_VIN = input("Enter vehicle VIN:\t\t")
+
+            vehicle_data={}
+            vehicle_data['brand']=vehicle_brand
+            vehicle_data['VIN']=vehicle_VIN
+
+            if os.path.exists(file_name):
+                if os.path.getsize(file_name) == 0:
+                    print("Entering first vehicle inventory information in file ... ... ..")
+                    file_data = open(file_name, 'ab')
+                    pickle.dump(vehicle_data,file_data)
+                    file_data.close()
+                else:
+                    print("Entering next vehicle inventory data in file .. .. ..")
+                    ###
+                    file_data = open(file_name, 'ab')
+                    pickle.dump(vehicle_data, file_data)
+                    file_data.close()
+        elif choice == '2':
+            if os.path.getsize(file_name) != 0:
+                print('-' * 125)
+                print("%70s" % ("Vehicle Dealership Record .. .."))
+                print('-' * 125)
+                print("%60s%60s\n" % ("Vehicle Brand", "Vehicle VIN"))
+                file_data = open(file_name, 'rb')
+                #for each_record in file_data:
+                while True:
+                    try:
+                        data=pickle.load(file_data)
+                        print("%60s%60s" % (data['brand'], data['VIN']))
+                    except:
+                        file_data.close()
+                        break
+            else:
+                print("No records to display in file .. ..")
+        elif choice == '3':
+            vehicle_found = False
+            print("Searching Vehicle based on Vehicle VIN .. .. ")
+            if os.path.getsize(file_name) != 0:
+                vehicle_search = input("Enter Vehicle VIN - to search:\t\t\t")
+                file_data = open(file_name, 'rb')
+                while True:
+                    try:
+                        data=pickle.load(file_data)
+                        if data['VIN'] == vehicle_search:
+                            vehicle_found = True
+                            print('-' * 125)
+                            print("%70s" % ("Vehicles' Dealership Inventory"))
+                            print('-' * 125)
+                            print("%60s%60s\n" % ("Vehicle Brand", "Vehicle VIN"))
+                            print("%60s%60s" % (data['brand'], data['VIN']))
+
+                    except:
+                        file_data.close()
+                        break
+                if vehicle_found == False:
+                    print(f"Vehicle with VIN number {vehicle_search} is not in stock yet .. .. ..")
+
+            else:
+                print("No records in the list ... .. so no search to be done .. .. ..")
+
+        elif choice == '4':
+            print("Application ending now .. .. .. ")
+            break
+
+        else:
+            print("Enter valid choice .... .... ....")
+
+
+main()
+
+
+########################################################
+########################################################
+########################################################

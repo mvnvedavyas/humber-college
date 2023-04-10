@@ -1,0 +1,37 @@
+Sprint 1:
+
+Epic: Office Setup
+User Story: Rent and set up office location and space
+User Story: Purchase and set up desks
+User Story: Purchase and set up computers
+User Story: Purchase and set up wires and networking equipment
+User Story: Purchase and set up phones
+User Story: Purchase and set up printers/fax
+This sprint focuses on setting up the physical office location and space as well as purchasing and setting up the necessary equipment and supplies. The tasks include renting the office space, purchasing and setting up desks, computers, phones, printers/fax, and wiring and networking equipment.
+
+Sprint 2:
+
+Epic: Customer Booking/Monitoring System Development
+User Story: Set up development environment for customer booking/monitoring system
+User Story: Develop login and registration functionality
+User Story: Develop booking functionality
+This sprint focuses on the initial development of the customer booking/monitoring system. The tasks include setting up the development environment for the system and developing the login and registration functionality as well as the booking functionality.
+
+Sprint 3:
+
+Epic: Customer Booking/Monitoring System Development
+User Story: Develop monitoring and reporting functionality
+User Story: Test and debug customer booking/monitoring system
+User Story: Set up phones and printers/fax
+This sprint focuses on the final stages of the customer booking/monitoring system development. The tasks include developing the monitoring and reporting functionality, testing and debugging the system, and setting up the phones and printers/fax.
+
+Sprint 4:
+
+Epic: Office Setup
+User Story: Finalize any remaining office set up tasks
+Epic: Customer Booking/Monitoring System Development
+User Story: Finalize customer booking/monitoring system development
+This sprint focuses on finalizing any remaining office set up tasks and completing the customer booking/monitoring system development. The tasks include finalizing the office set up tasks such as setting up any remaining equipment and supplies, and finalizing the customer booking/monitoring system development by testing and debugging any remaining issues.
+
+
+
